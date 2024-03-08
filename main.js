@@ -10,6 +10,9 @@ const characterLocation = document.querySelector('.character-location');
 const characterStatus = document.querySelector('.character-status');
 const characterImage = document.querySelector('.character-box-image');
 
+let firstCharacterId = 1;
+let lastCharacterId = 5;
+
 async function getCharacters(firstCharacterId, lastCharacterId) {
     try {
         for(let i = firstCharacterId; i <= lastCharacterId; i++){
@@ -23,4 +26,31 @@ async function getCharacters(firstCharacterId, lastCharacterId) {
     }
 }
 
-getCharacters(1, 5);
+function showPrevButton(lastCharacterId) {
+    if(lastCharacterId > 5) {
+        prevButton.style.display = 'block';
+    } else {
+        prevButton.style.display = 'none';
+    }
+}
+
+showPrevButton();
+getCharacters(firstCharacterId, lastCharacterId);
+nextButton.addEventListener('click', () => {
+    firstCharacterId += 5;
+    lastCharacterId += 5;
+    getCharacters(firstCharacterId, lastCharacterId);
+    showPrevButton(lastCharacterId);
+
+});
+
+prevButton.addEventListener('click', () => {
+    if (firstCharacterId <= 5) {
+        getCharacters(firstCharacterId, lastCharacterId);
+    } else {
+        firstCharacterId -= 5;
+        lastCharacterId -= 5;
+        getCharacters(firstCharacterId, lastCharacterId);
+    }
+    showPrevButton(lastCharacterId);
+});
