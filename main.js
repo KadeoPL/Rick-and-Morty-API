@@ -34,6 +34,13 @@ function showPrevButton(lastCharacterId) {
     }
 }
 
+function createHtmlElement(tagName, textContent, className) {
+    const element = document.createElement(tagName);
+    element.classList.add(className);
+    element.textContent = textContent;
+    return element;
+}
+
 showPrevButton();
 getCharacters(firstCharacterId, lastCharacterId);
 nextButton.addEventListener('click', () => {
