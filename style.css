@@ -41,6 +41,11 @@ body {
   width: 20%;
   background-color: #fff;
   border-radius: 10px;
+  margin-right: 2%;
+}
+
+.character-box:nth-last-child(1){
+  margin-right: 0;
 }
 
 .character-box-image {
@@ -55,6 +60,10 @@ body {
   padding: 20px;
 }
 
+.character-location, .character-status, .character-name {
+  font-family: Comfortaa;
+}
+
 .character-name {
   font-size: 24px;
   margin-bottom: 20px;
@@ -67,6 +76,7 @@ body {
 .character-location {
   margin-bottom: 16px;
 }
+
 .button-section {
   display: flex;
   align-items: center;
@@ -88,7 +98,7 @@ body {
 
 .button-section {
   display: flex;
-  height: 30%;
+  height: auto;
   align-items: center;
   justify-content: center;
 }
