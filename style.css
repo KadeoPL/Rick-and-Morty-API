@@ -1,0 +1,80 @@
+:root {
+  --davys-gray: #4F535Eff;
+  --sgbus-green: #5DE624ff;
+  --non-photo-blue: #C0EEFBff;
+  --lawn-green: #8FF335ff;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--davys-gray);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.character-section {
+  height: 70%;
+}
+
+.button-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.comfortaa-bold {
+  font-family: "Comfortaa", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.comfortaa-regular {
+  font-family: "Comfortaa", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.button-section {
+  display: flex;
+  height: 30%;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  padding: 10px 20px;
+  margin-right: 20px;
+  font-size: 16px;
+  color: var(--lawn-green);
+  background-color: transparent;
+  border: 1px solid  var(--lawn-green);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.5s ease, color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--lawn-green);
+  color: white;
+  transform: scale(1.2);
+}
+
+button:nth-last-child(1){
+  margin-right: 0;
+}
