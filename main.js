@@ -6,8 +6,9 @@ const errorButton = document.getElementById('errorPage');
 
 const charactersSection = document.querySelector('.characters-section');
 
-let firstCharacterId = 1;
-let lastCharacterId = 5;
+let firstCharacterId;
+let lastCharacterId;
+let firstId = '';
 
 async function getCharacters(firstCharacterId, lastCharacterId) {
     try {
@@ -86,9 +87,6 @@ function renderError(errorStatus, errorMessage) {
     charactersSection.appendChild(errorBox);
 }
 
-showPrevButton();
-getCharacters(firstCharacterId, lastCharacterId);
-
 nextButton.addEventListener('click', () => {
     charactersSection.textContent = '';
     firstCharacterId += 5;
@@ -125,7 +123,26 @@ errorButton.addEventListener('click', () => {
         getCharacters(firstCharacterId, lastCharacterId);
     }
     showPrevButton(lastCharacterId);
-
-
 });
+
+window.addEventListener('beforeunload', () => {
+    localStorage.setItem(firstId, firstCharacterId);
+});
+
+
+document.addEventListener("DOMContentLoaded", (event) => {
+    if (localStorage.getItem(firstId) === null){
+        firstCharacterId = 1;
+        lastCharacterId = 5;
+        getCharacters(firstCharacterId, lastCharacterId);
+        showPrevButton();
+        console.log('Null');
+    } else {
+        firstCharacterId = parseInt(localStorage.getItem(firstId));
+        lastCharacterId = firstCharacterId + 5;
+        getCharacters(firstCharacterId, lastCharacterId);
+        showPrevButton(lastCharacterId);
+        console.log('Local Storage');
+    }
+  });
 
