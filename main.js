@@ -41,6 +41,10 @@ function createHtmlElement(tagName, textContent, className) {
     return element;
 }
 
+function renderCharacter (name, location, status) {
+    
+}
+
 showPrevButton();
 getCharacters(firstCharacterId, lastCharacterId);
 nextButton.addEventListener('click', () => {
