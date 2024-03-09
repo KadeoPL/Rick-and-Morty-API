@@ -10,7 +10,7 @@ let firstCharacterId;
 let lastCharacterId;
 let firstId = '';
 
-async function getCharacters(firstCharacterId, lastCharacterId) {
+/*async function getCharacters(firstCharacterId, lastCharacterId) {
     try {
         for (let i = firstCharacterId; i <= lastCharacterId; i++) {
             try {
@@ -27,6 +27,34 @@ async function getCharacters(firstCharacterId, lastCharacterId) {
                 renderError(error.response.status, error.message);
             }
         }
+    } catch (error) {
+        renderError(error.response.status, error.message);
+    }
+}*/
+
+async function getCharacters(firstCharacterId, lastCharacterId) {
+    try {
+        const promises = [];
+        for (let i = firstCharacterId; i <= lastCharacterId; i++) {
+            promises.push(
+                (async () => {
+                    try {
+                        const response = await axios.get(`https://rickandmortyapi.com/api/character/${i}`);
+                        const { name, location, status, image } = response.data;
+                        const characterData = {
+                            name: name,
+                            location: location.name,
+                            status: status,
+                            image: image
+                        };
+                        await renderCharacter(characterData);
+                    } catch (error) {
+                        await renderError(error.response.status, error.message);
+                    }
+                })()
+            );
+        }
+        await Promise.all(promises);
     } catch (error) {
         renderError(error.response.status, error.message);
     }
