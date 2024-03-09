@@ -119,7 +119,7 @@ errorButton.addEventListener('click', () => {
     } else {
         errorButton.textContent = 'Return';
         firstCharacterId = 900;
-        lastCharacterId = firstCharacterId + 5;
+        lastCharacterId = firstCharacterId + 4;
         getCharacters(firstCharacterId, lastCharacterId);
     }
     showPrevButton(lastCharacterId);
@@ -135,12 +135,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
         firstCharacterId = 1;
         lastCharacterId = 5;
         getCharacters(firstCharacterId, lastCharacterId);
-        showPrevButton();
+        console.log(firstCharacterId, lastCharacterId);
+        showPrevButton(lastCharacterId);
     } else {
         firstCharacterId = parseInt(localStorage.getItem(firstId));
-        lastCharacterId = firstCharacterId + 5;
+        lastCharacterId = firstCharacterId + 4;
         getCharacters(firstCharacterId, lastCharacterId);
-        showPrevButton();
+        console.log(firstCharacterId, lastCharacterId);
+        showPrevButton(lastCharacterId);
     }
   });
 
