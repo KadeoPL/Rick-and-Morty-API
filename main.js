@@ -132,14 +132,14 @@ window.addEventListener('beforeunload', () => {
 
 document.addEventListener("DOMContentLoaded", (event) => {
     if (localStorage.getItem(firstId) === null){
-        showPrevButton();
         firstCharacterId = 1;
         lastCharacterId = 5;
+        showPrevButton();
         getCharacters(firstCharacterId, lastCharacterId);
     } else {
-        showPrevButton(lastCharacterId);
         firstCharacterId = parseInt(localStorage.getItem(firstId));
         lastCharacterId = firstCharacterId + 5;
+        showPrevButton();
         getCharacters(firstCharacterId, lastCharacterId);
     }
   });
