@@ -132,17 +132,15 @@ window.addEventListener('beforeunload', () => {
 
 document.addEventListener("DOMContentLoaded", (event) => {
     if (localStorage.getItem(firstId) === null){
+        showPrevButton();
         firstCharacterId = 1;
         lastCharacterId = 5;
         getCharacters(firstCharacterId, lastCharacterId);
-        showPrevButton();
-        console.log('Null');
     } else {
+        showPrevButton(lastCharacterId);
         firstCharacterId = parseInt(localStorage.getItem(firstId));
         lastCharacterId = firstCharacterId + 5;
         getCharacters(firstCharacterId, lastCharacterId);
-        showPrevButton(lastCharacterId);
-        console.log('Local Storage');
     }
   });
 
