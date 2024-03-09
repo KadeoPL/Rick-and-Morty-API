@@ -153,4 +153,8 @@ button:nth-last-child(1){
   height: 100%;
  }
 
+ .character-box-description {
+  width: 70%;
+ }
+
 }
