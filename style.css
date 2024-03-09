@@ -124,3 +124,33 @@ button:hover {
 button:nth-last-child(1){
   margin-right: 0;
 }
+
+
+@media only screen and (max-width: 768px) {
+  body {
+    height: auto;
+  }
+
+  .container {
+    width: 90%;
+  }
+ 
+  .characters-section {
+  flex-direction: column;
+  margin-top: 100px;
+  margin-bottom: 50px;
+ }
+
+ .character-box {
+  width:  100%;
+  flex-direction: row;
+  margin-right: 0;
+  margin-bottom: 20px;
+ }
+
+ .character-box-image {
+  width: 30%;
+  height: 100%;
+ }
+
+}
