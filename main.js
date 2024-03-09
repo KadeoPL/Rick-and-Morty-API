@@ -134,13 +134,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
     if (localStorage.getItem(firstId) === null){
         firstCharacterId = 1;
         lastCharacterId = 5;
-        showPrevButton();
         getCharacters(firstCharacterId, lastCharacterId);
+        showPrevButton();
     } else {
         firstCharacterId = parseInt(localStorage.getItem(firstId));
         lastCharacterId = firstCharacterId + 5;
-        showPrevButton();
         getCharacters(firstCharacterId, lastCharacterId);
+        showPrevButton();
     }
   });
 
