@@ -126,22 +126,19 @@ errorButton.addEventListener('click', () => {
 });
 
 window.addEventListener('beforeunload', () => {
-    localStorage.setItem(firstId, firstCharacterId);
+    localStorage.setItem('savedFirstCharacterId', firstCharacterId);
 });
 
-
 document.addEventListener("DOMContentLoaded", (event) => {
-    if (localStorage.getItem(firstId) === null){
+    if (localStorage.getItem('savedFirstCharacterId') === null){
         firstCharacterId = 1;
         lastCharacterId = 5;
         getCharacters(firstCharacterId, lastCharacterId);
-        console.log(firstCharacterId, lastCharacterId);
         showPrevButton(lastCharacterId);
     } else {
-        firstCharacterId = parseInt(localStorage.getItem(firstId));
+        firstCharacterId = parseInt(localStorage.getItem('savedFirstCharacterId'));
         lastCharacterId = firstCharacterId + 4;
         getCharacters(firstCharacterId, lastCharacterId);
-        console.log(firstCharacterId, lastCharacterId);
         showPrevButton(lastCharacterId);
     }
   });
