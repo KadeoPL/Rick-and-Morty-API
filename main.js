@@ -40,7 +40,7 @@ function showPrevButton(lastCharacterId) {
     }
 }
 
-function createHtmlElement(tagName, textContent, className) {
+export default function createHtmlElement(tagName, textContent, className) {
     const element = document.createElement(tagName);
     element.classList.add(className);
     element.textContent = textContent;
