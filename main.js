@@ -31,7 +31,7 @@ async function getCharacters(firstCharacterId, lastCharacterId) {
     }
 }
 
-function showPrevButton(lastCharacterId) {
+export function showPrevButton(lastCharacterId) {
     if (lastCharacterId > 5) {
         prevButton.style.display = 'block';
     } else {
@@ -72,6 +72,7 @@ function renderCharacter(characterData) {
 }
 
 function renderError(errorStatus, errorMessage) {
+    
     const errorBox = createHtmlElement('div', '', 'character-box');
 
     const errorImage = createHtmlElement('div', '', 'character-box-image');
