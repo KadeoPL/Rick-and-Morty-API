@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import {createHtmlElement} from '../main'
+import { createHtmlElement } from '../main.js'
 
 describe('createHtmlElement', () => {
     it('should create an element with the correct tag, text content, and class', () => {

@@ -8,7 +8,6 @@ const charactersSection = document.querySelector('.characters-section');
 
 let firstCharacterId;
 let lastCharacterId;
-let firstId = '';
 
 async function getCharacters(firstCharacterId, lastCharacterId) {
     try {
@@ -33,30 +32,34 @@ async function getCharacters(firstCharacterId, lastCharacterId) {
 }
 
 function showPrevButton(lastCharacterId) {
-    if(lastCharacterId > 5) {
+    if (lastCharacterId > 5) {
         prevButton.style.display = 'block';
     } else {
         prevButton.style.display = 'none';
     }
 }
 
-export default function createHtmlElement(tagName, textContent, className) {
+export function createHtmlElement(tagName, textContent, className) {
     const element = document.createElement(tagName);
-    element.classList.add(className);
-    element.textContent = textContent;
+    if (className) {
+        element.classList.add(className);
+    }
+    if (textContent) {
+        element.textContent = textContent;
+    }
     return element;
 }
 
 function renderCharacter(characterData) {
     const characterBox = createHtmlElement('div', '', 'character-box');
-    
+
     const characterImage = createHtmlElement('div', '', 'character-box-image');
     characterImage.style.backgroundImage = `url(${characterData.image})`;
 
     const characterDescription = createHtmlElement('div', '', 'character-box-description');
     const characterName = createHtmlElement('h1', characterData.name, 'character-name');
     const characterLocation = createHtmlElement('h2', 'Location: ' + characterData.location, 'character-location');
-    const characterStatus = createHtmlElement('h2',  'Status: ' + characterData.status, 'character-status');
+    const characterStatus = createHtmlElement('h2', 'Status: ' + characterData.status, 'character-status');
 
     characterDescription.appendChild(characterName);
     characterDescription.appendChild(characterLocation);
@@ -70,7 +73,7 @@ function renderCharacter(characterData) {
 
 function renderError(errorStatus, errorMessage) {
     const errorBox = createHtmlElement('div', '', 'character-box');
-    
+
     const errorImage = createHtmlElement('div', '', 'character-box-image');
     errorImage.style.backgroundImage = `url('img/error_image.jpg')`;
 
@@ -87,59 +90,61 @@ function renderError(errorStatus, errorMessage) {
     charactersSection.appendChild(errorBox);
 }
 
-nextButton.addEventListener('click', () => {
-    charactersSection.textContent = '';
-    firstCharacterId += 5;
-    lastCharacterId += 5;
-    getCharacters(firstCharacterId, lastCharacterId);
-    showPrevButton(lastCharacterId);
-
-});
-
-prevButton.addEventListener('click', () => {
-    if (firstCharacterId <= 5) {
+if (nextButton) {
+    nextButton.addEventListener('click', () => {
         charactersSection.textContent = '';
+        firstCharacterId += 5;
+        lastCharacterId += 5;
         getCharacters(firstCharacterId, lastCharacterId);
-    } else {
-        charactersSection.textContent = '';
-        firstCharacterId -= 5;
-        lastCharacterId -= 5;
-        getCharacters(firstCharacterId, lastCharacterId);
-    }
-    showPrevButton(lastCharacterId);
-});
+        showPrevButton(lastCharacterId);
+    });
+}
 
-errorButton.addEventListener('click', () => {
-    charactersSection.textContent = '';
-    if(lastCharacterId > 862) {
-        errorButton.textContent = 'Error Page';
-        firstCharacterId = 1;
-        lastCharacterId = 5;
-        getCharacters(firstCharacterId, lastCharacterId);
-    } else {
-        errorButton.textContent = 'Return';
-        firstCharacterId = 900;
-        lastCharacterId = firstCharacterId + 4;
-        getCharacters(firstCharacterId, lastCharacterId);
-    }
-    showPrevButton(lastCharacterId);
-});
+if (prevButton) {
+    prevButton.addEventListener('click', () => {
+        if (firstCharacterId <= 5) {
+            charactersSection.textContent = '';
+            getCharacters(firstCharacterId, lastCharacterId);
+        } else {
+            charactersSection.textContent = '';
+            firstCharacterId -= 5;
+            lastCharacterId -= 5;
+            getCharacters(firstCharacterId, lastCharacterId);
+        }
+        showPrevButton(lastCharacterId);
+    });
+}
+
+if (errorButton) {
+    errorButton.addEventListener('click', () => {
+        charactersSection.textContent = '';
+        if (lastCharacterId > 862) {
+            errorButton.textContent = 'Error Page';
+            firstCharacterId = 1;
+            lastCharacterId = 5;
+            getCharacters(firstCharacterId, lastCharacterId);
+        } else {
+            errorButton.textContent = 'Return';
+            firstCharacterId = 900;
+            lastCharacterId = firstCharacterId + 4;
+            getCharacters(firstCharacterId, lastCharacterId);
+        }
+        showPrevButton(lastCharacterId);
+    });
+}
 
 window.addEventListener('beforeunload', () => {
     localStorage.setItem('savedFirstCharacterId', firstCharacterId);
 });
 
-document.addEventListener("DOMContentLoaded", (event) => {
-    if (localStorage.getItem('savedFirstCharacterId') === null){
+document.addEventListener("DOMContentLoaded", () => {
+    if (localStorage.getItem('savedFirstCharacterId') === null) {
         firstCharacterId = 1;
         lastCharacterId = 5;
-        getCharacters(firstCharacterId, lastCharacterId);
-        showPrevButton(lastCharacterId);
     } else {
         firstCharacterId = parseInt(localStorage.getItem('savedFirstCharacterId'));
         lastCharacterId = firstCharacterId + 4;
-        getCharacters(firstCharacterId, lastCharacterId);
-        showPrevButton(lastCharacterId);
     }
-  });
-
+    getCharacters(firstCharacterId, lastCharacterId);
+    showPrevButton(lastCharacterId);
+});
